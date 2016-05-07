@@ -1,0 +1,14 @@
+extends ../layout
+
+block content
+
+  .container
+    .row
+      .col-md-3
+        .list-group
+
+          a.list-group-item(href='/admin' class=activeRoute == '/admin' ? 'active' : null) Message settings
+          a.list-group-item(href='/admin/behavior' class=activeRoute == '/admin/behavior' ? 'active' : null) Behavior settings
+          a.list-group-item(href='/admin/faq' class=activeRoute == '/admin/faq' ? 'active' : null) FAQ
+      .col-md-9
+        block adminContent

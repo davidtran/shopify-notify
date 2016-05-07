@@ -1,0 +1,175 @@
+extends adminLayout
+
+block adminContent
+  script.
+    $(function() {
+
+      function updateCustomCss() {
+        var cssContent = $customCss.val();
+        if (cssContent.length >0) cssContent = cssContent.split('\n').join('');
+        function appendStyle(styles) {
+          var css = document.getElementById('notyStyle');
+          if (css == null) {
+            css = document.createElement('style');
+            css.type = 'text/css';
+            css.setAttribute('id','notyStyle');
+            document.getElementsByTagName("head")[0].appendChild(css);
+          }
+          if (css.styleSheet) css.styleSheet.cssText = styles;
+          else css.appendChild(document.createTextNode(styles));
+        }
+
+        appendStyle(cssContent);
+
+      }
+      $('#btnTest').click(function(e) {
+        e.preventDefault();
+        var formData = getFormData('messageForm');
+
+        var content = template(formData.content, {
+          count: 50
+        });
+
+        console.log(content);
+
+        //updateCustomCss();
+
+        var $n = noty({
+          text: content,
+          layout: formData.position,
+          type: formData.style,
+          theme: 'relax',
+          timeout: formData.displayTime * 1000,
+          template: '<div class="snmc_container"><div class="noty_message"><span class="noty_text"></span><div class="noty_close"></div></div></div>'
+        });
+        return false;
+      });
+
+      $('#btnSave').click(function(e) {
+        e.preventDefault();
+        saveFormData();
+        return false;
+      })
+      function saveFormData() {
+        var formData = getFormData('messageForm');
+        $.ajax({
+          url: '/admin',
+          data: formData,
+          type: 'post',
+          success: function() {
+            noty({
+              text: 'Your settings have been saved. You can go to your product page and try it out',
+              layout: 'bottomRight',
+              type: 'success',
+              theme:'relax',
+              timeout: 2000
+
+            });
+          },
+          error: function(err) {
+            noty({
+              text: err.responseText,
+              layout: 'bottomRight',
+              type: 'alert',
+              theme:'relax',
+              timeout: 2000
+            });
+          }
+        })
+      }
+
+      $('.position-container .btn[data-position="#{form.position}"]').addClass('active');
+
+      $('.position-container .btn').click(function(e) {
+        e.preventDefault();
+        var position = $(this).data('position');
+        $('input[name="position"]').val(position);
+        $('.position-container .btn').removeClass('active');
+        $(this).addClass('active');
+        return false;
+      });
+    });
+
+
+  form(name='messageForm')
+    .row
+      .col-md-6
+        h1 Message settings
+        .form-group
+          label Message
+          textarea(name='content' class='form-control' value='#{form.content}') #{form.content}
+          p.help-block Availables variables: {{count}}
+
+        .form-group
+          label Style
+          .radio
+            label
+              input(type='radio' name='style' value='success' checked=form.style=='success')
+              img(src="/img/style1.png" class='img-responsive')
+          .radio
+            label
+              input(type='radio' name='style' value='alert' checked=form.style=='alert')
+              img(src="/img/style2.png" class='img-responsive')
+          .radio
+            label
+              input(type='radio' name='style' value='warning' checked=form.style=='warning')
+              img(src="/img/style3.png" class='img-responsive')
+          .radio
+            label
+              input(type='radio' name='style' value='information' checked=form.style=='information')
+              img(src="/img/style4.png" class='img-responsive')
+
+
+
+        .form-group
+          label Position
+          input(type='hidden' value='#{form.position}' name='position')
+          .position-container
+            table
+              tr
+                td
+                  .btn.btn-default(data-position='topLeft')
+                    i.fa.fa-arrow-left.top-left
+                td
+                  .btn.btn-default(data-position='topCenter')
+                    i.fa.fa-arrow-left.top
+                td
+                  .btn.btn-default(data-position='topRight')
+                    i.fa.fa-arrow-left.top-right
+              tr
+                td
+                  .btn.btn-default(data-position='centerLeft')
+                    i.fa.fa-arrow-left.left
+                td
+                  .btn.btn-default(data-position='center')
+                    i.fa.fa-circle
+                td
+                  .btn.btn-default(data-position='centerRight')
+                    i.fa.fa-arrow-left.right
+              tr
+                td
+                  .btn.btn-default(data-position='bottomLeft')
+                    i.fa.fa-arrow-left.bottom-left
+                td
+                  .btn.btn-default(data-position='bottomCenter')
+                    i.fa.fa-arrow-left.bottom
+                td
+                  .btn.btn-default(data-position='bottomRight')
+                    i.fa.fa-arrow-left.bottom-right
+
+        .form-group
+          button(type='button' id='btnTest' class='btn btn-default') Test
+          &nbsp;
+          button(type='button' id='btnSave' class='btn btn-primary') Save settings
+      .col-md-6
+        .form-group
+          label App settings
+          .checkbox
+            label
+              input(type='checkbox' name='active' value='#{form.active}' checked=form.active)
+              | Active
+          .checkbox
+            label
+              input(type='checkbox' name='mobile' value='#{form.mobile}' checked=form.mobile)
+              | Mobile
+

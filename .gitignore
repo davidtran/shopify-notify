@@ -1,0 +1,4 @@
+sessons/
+node_modules/
+public/components
+.env

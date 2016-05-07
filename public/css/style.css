@@ -1,0 +1,66 @@
+body {
+  padding: 30px; }
+
+a {
+  color: #00B7FF; }
+
+h1 {
+  margin-top: 0; }
+
+.footer-form {
+  margin-top: 15px;
+  height: 72px; }
+  .footer-form .checkbox {
+    display: inline; }
+
+#btnApply {
+  margin-top: 5px; }
+
+.position-container i.top-left {
+  -ms-transform: rotate(45deg);
+  /* IE 9 */
+  -webkit-transform: rotate(45deg);
+  /* Chrome, Safari, Opera */
+  transform: rotate(45deg); }
+
+.position-container i.top {
+  -ms-transform: rotate(90deg);
+  /* IE 9 */
+  -webkit-transform: rotate(90deg);
+  /* Chrome, Safari, Opera */
+  transform: rotate(90deg); }
+
+.position-container i.top-right {
+  -ms-transform: rotate(135deg);
+  /* IE 9 */
+  -webkit-transform: rotate(135deg);
+  /* Chrome, Safari, Opera */
+  transform: rotate(135deg); }
+
+.position-container i.right {
+  -ms-transform: rotate(180deg);
+  /* IE 9 */
+  -webkit-transform: rotate(180deg);
+  /* Chrome, Safari, Opera */
+  transform: rotate(180deg); }
+
+.position-container i.bottom-left {
+  -ms-transform: rotate(-45deg);
+  /* IE 9 */
+  -webkit-transform: rotate(-45deg);
+  /* Chrome, Safari, Opera */
+  transform: rotate(-45deg); }
+
+.position-container i.bottom {
+  -ms-transform: rotate(-90deg);
+  /* IE 9 */
+  -webkit-transform: rotate(-90deg);
+  /* Chrome, Safari, Opera */
+  transform: rotate(-90deg); }
+
+.position-container i.bottom-right {
+  -ms-transform: rotate(-135deg);
+  /* IE 9 */
+  -webkit-transform: rotate(-135deg);
+  /* Chrome, Safari, Opera */
+  transform: rotate(-135deg); }

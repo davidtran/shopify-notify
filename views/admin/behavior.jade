@@ -1,0 +1,57 @@
+extends adminLayout
+
+block adminContent
+  script.
+    $(function() {
+      $('#btnSaveBehavior').click(function(e) {
+        e.preventDefault();
+        saveFormData();
+        return false;
+      })
+
+      function saveFormData() {
+        var formData = getFormData('behaviorForm');
+        $.ajax({
+          url: '/admin',
+          data: formData,
+          type: 'post',
+          success: function() {
+            noty({
+              text: 'Your settings have been saved',
+              layout: 'bottomRight',
+              type: 'success',
+              theme:'relax',
+              timeout: 1000
+            });
+          },
+          error: function(err) {
+            noty({
+              text: err.responseText,
+              layout: 'bottomRight',
+              type: 'alert',
+              theme:'relax',
+              timeout: 1000
+            });
+          }
+        })
+      }
+    });
+  form(name='behaviorForm')
+    .row
+      .col-md-12
+        h1 Behavior settings
+        .form-group
+          label Display time
+          input(type='number' name='displayTime' class='form-control' value='#{form.displayTime}')
+          p.help-block The total second(s) that message displays before fade away.
+        .form-group
+          label Intial delay
+          input(type='number' name='initialDelay' class='form-control' value='#{form.initialDelay}')
+          p.help-block How much time (seconds) that website has to wait before display this popup
+        .form-group
+          label Min view count
+          input(type='number' name='minViewCount' class='form-control' value='#{form.minViewCount}')
+          p.help-block The minimize view number for particulate page that's required to display this popup
+        .form-group
+          button(class='btn btn-primary' id='btnSaveBehavior') Save settings
+
