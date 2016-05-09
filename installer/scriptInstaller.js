@@ -10,7 +10,7 @@ function ScriptInstaller(api, shop) {
 ScriptInstaller.prototype.install = function() {
   var _this = this;
   var scripts = [
-    process.env.HOST_NAME + '/js/shopify_viewer_notify.js'
+    process.env.HOST_NAME + '/resource/shopify_viewer_notify.js'
   ];
   var pms = [];
   scripts.forEach(script => pms.push(_this.installScript(script)));

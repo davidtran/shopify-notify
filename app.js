@@ -12,7 +12,7 @@ var FileStore = require('session-file-store')(session);
 var routes = require('./routes/index');
 var routeInstall = require('./routes/install');
 var routeAdmin = require('./routes/admin');
-
+var routeResource = require('./routes/resource');
 var app = express();
 
 var env = process.env.NODE_ENV || 'development';
@@ -48,7 +48,7 @@ app.use(function(req, res, next) {
 app.use('/', routes);
 app.use('/install', routeInstall);
 app.use('/admin', routeAdmin);
-
+app.use('/resource', routeResource);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {

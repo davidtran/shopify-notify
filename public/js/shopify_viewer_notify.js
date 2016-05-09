@@ -1,5 +1,5 @@
 (function(document) {
-  var rootUrl = 'https://localhost:3050';
+  var rootUrl = ROOT_URL_PLACEHOLDER;
   loadApp();
 
   function loadApp() {
@@ -21,7 +21,7 @@
   }
 
   function loadNotifyLibrary(callback) {
-    var notifyScript = 'https://localhost:3050/components/noty/js/noty/packaged/jquery.noty.packaged.js'
+    var notifyScript = rootUrl + '/components/noty/js/noty/packaged/jquery.noty.packaged.js'
     if (typeof($.noty) == 'undefined') {
       return loadScriptAndExecute(notifyScript, document, callback)
     }
