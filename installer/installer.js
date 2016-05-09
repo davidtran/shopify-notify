@@ -22,6 +22,9 @@ Installer.prototype.install = function() {
         return _this.shopModel.save();
       })
       .then(() => {
+        return _this.getShopInfo();
+      })
+      .then(() => {
         return _this.installScripts();
       })
       .then(() => {
@@ -102,9 +105,7 @@ Installer.prototype.getShopInfo = function() {
     return _this.api.get('/admin/shop.json', (err, data) => {
       if (err) return reject(err);
       _this.shopModel.domain = data.shop.domain
-      return _this.shopModel.save()
-        .then(() => resolve)
-        .catch(err => reject(err))
+      return _this.shopModel.save();
     })
   })
 
