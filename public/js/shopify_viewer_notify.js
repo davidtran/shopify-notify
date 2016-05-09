@@ -1,5 +1,5 @@
 (function(document) {
-  var rootUrl = ROOT_URL_PLACEHOLDER;
+  var rootUrl = "ROOT_URL_PLACEHOLDER";
   loadApp();
 
   function loadApp() {
