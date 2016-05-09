@@ -106,7 +106,7 @@ Installer.prototype.getShopInfo = function() {
       if (err) return reject(err);
       _this.shopModel.domain = data.shop.domain
       return _this.shopModel.save()
-        .then(() => resolve)
+        .then(() => resolve())
         .catch(err => reject(err))
     })
   })
