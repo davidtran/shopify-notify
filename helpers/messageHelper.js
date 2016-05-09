@@ -12,7 +12,7 @@ function saveVisit(ip, url) {
   return models
     .Visit
     .build({
-      ip: Math.floor(Math.random() * 99999),
+      ip: ip,
       url: removeQueryStringFromUrl(url)
     })
     .save();
