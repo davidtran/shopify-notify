@@ -34,14 +34,15 @@ app.use(cookieParser());
 app.set('trust proxy', 1) // trust first proxy
 app.use(session({
   store: new FileStore(),
-  secret: 'keyboard cat',
+  secret: 'shopify-notify',
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: true }
+  cookie: { secure: false }
 }))
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(function(req, res, next) {
   res.locals.activeRoute = req.path.trim();
+  res.locals.GOOGLE_ANALYTIC_ID = process.env.GOOGLE_ANALYTIC_ID;
   return next();
 });
 app.use('/', routes);

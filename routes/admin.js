@@ -100,5 +100,7 @@ router.get('/behavior', shopChecker, (req, res) => {
 })
 
 router.get('/faq', shopChecker, (req, res) => {
-  return res.render('admin/faq')
+  return res.render('admin/faq', {
+    title: 'FAQ'
+  })
 })

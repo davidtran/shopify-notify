@@ -9,7 +9,7 @@ router.options('*', cors());
 
 router.get('/', function(req, res) {
   res.render('index', {
-    title: 'Shopify-Watermark'
+    title: 'Shopify-Notify'
   });
 });
 

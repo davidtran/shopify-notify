@@ -29,7 +29,7 @@ function getApi(shopname) {
         shopify_api_key: process.env.SHOPIFY_API_KEY,
         shopify_shared_secret: process.env.SHOPIFY_SECRET,
         shopify_scope: process.env.SHOPIFY_SCOPE,
-        redirect_uri: process.env.HOST_NAME + ':' + process.env.PORT + '/install/callback',
+        redirect_uri: process.env.HOST_NAME + '/install/callback',
         nonce: shop.nonce,
         access_token: shop.token
       });
